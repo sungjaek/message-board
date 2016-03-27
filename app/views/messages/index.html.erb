@@ -14,18 +14,28 @@
   </div>
 </div>
 
-<form class="form-inline">
-<%= form_for(@message) do |f| %>
- <div class="form-group">
-  <label for="inputname">名前:</label> 
-  <%= f.text_area :name %>
-</div>
 
-<div class="form-group">
-  <label for="inputbody">内容:</label>
-  <%= f.text_area :body %>
-</div>
+<%= form_for(@message, html:{class:"form-inline"}) do |f| %>
+ <% if @message.errors.present? %>
+  <div class="alert alert-danger">
+      <%= alert %>
+       <ul>
+           <% @message.errors.full_messages.each do |full_message| %>
+           <li>
+               <%= full_message %>
+           </li>
+           <% end %>
+       </ul>
+  </div>
+ <% end %>
+ 
+ 
+   名前:
+   <%= f.text_field :name, class:"form-group" %>
+
+    内容:
+   <%= f.text_area :body, class:"form-group" %>
    <%= f.submit class: "btn btn-sm btn-primary" %>
 
 <% end %>
-</form>    
+  
