@@ -1,15 +1,31 @@
-<h1>メッセージ一覧</h1>
-<% @messages.each do |message| %>
- 名前:<%= message.name %>
- 内容:<%= message.body %>
- <br>
-<% end %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+      <h3 class="panel-title">
+          メッセージ一覧
+      </h3>
+  </div>
+    
+  <div class="panel-body">
+    <% @messages.each do |message| %>
+      <span class="label label-info"><%= message.name %></span>
+      <%= message.body %>
+      <br>
+    <% end %>
+  </div>
+</div>
 
+<form class="form-inline">
 <%= form_for(@message) do |f| %>
- 名前：
- <%= f.text_field :name %>
+ <div class="form-group">
+  <label for="inputname">名前:</label> 
+  <%= f.text_area :name %>
+</div>
 
- 内容：
- <%= f.text_field :body %>
- <%= f.submit %>
+<div class="form-group">
+  <label for="inputbody">内容:</label>
+  <%= f.text_area :body %>
+</div>
+   <%= f.submit class: "btn btn-sm btn-primary" %>
+
 <% end %>
+</form>    
